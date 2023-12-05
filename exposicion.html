@@ -1,0 +1,49 @@
+                            <!-- MENU CON JQUERY-->
+
+                            <head>
+                                <style>
+                                  body {
+                                    text-align: center;
+                                  }
+                                </style>
+                               </head>
+                               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                               <script>
+                                   $(document).ready(function(){
+                                       $(".menuItem").click(function(){
+                                           $(".submenu").hide();
+                                           $(this).find(".submenu").toggle();
+                                       });
+                                   });
+                               </script>
+                               <br>
+                               <style>
+                                   .menuItem {
+                                       cursor: pointer;
+                                       margin: 10px;
+                                       margin: 10px;
+                                       border: 1px solid black;
+                                       border-radius: 10px;
+                                       padding: 10px;
+                                       background-color: #3386FF;
+                                       color: #F3F3F3;
+                               
+                               
+                                   }
+                               
+                               </style>
+                               </head>
+                               <body>
+                               
+                               <b><a class="menuItem" href="index.html">Inicio<a></b>
+                               
+                               <b><a class="menuItem" href="exposicion.html">Exposicion<a></b>
+                               
+                               <b><a class="menuItem" href="obras.html">Obras<a></b>
+                               
+                               <b><a class="menuItem" href="catalogo.html">Catalogos<a></b>
+                               
+                               <b><a class="menuItem" href="recursos.html">Recursos Visuales<a></b>
+                               <br>
+                               </body>
+                               
