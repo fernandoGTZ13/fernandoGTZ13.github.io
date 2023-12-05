@@ -93,7 +93,14 @@
         const edad = document.getElementById("edad").value;
          
         //Verificar si se imprime
-        console.log(nombre, edad);
+
+        push(
+            ref(database, 'septimo'),
+            {
+                name: nombre,
+                age: edad
+            }
+        );
     }
 
   </script>
