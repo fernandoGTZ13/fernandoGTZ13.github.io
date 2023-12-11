@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<title>Formulario</title>
+</head>
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        height: 0;
+        background-image: url('https://previews.123rf.com/images/incomible/incomible1810/incomible181000256/121747519-impresi%C3%B3n-de-m%C3%BAsica-rock-and-roll-cartel-del-festival-de-rock-fondo-vintage-con-elementos.jpg');
+
+
+    }
+    .full-screen-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+        margin: 0;
+    }
+    
+
+</style>
+<body class="fondo">
+	<table width="40%"  align="center" bgcolor="#58779A">
+		
+			<td align="center">
+                
+				<h2>Formulario de Registro de Musica</h2>
+                <div>
+                    <img src="https://img.freepik.com/foto-gratis/guitarra-acuarela-abstracta-explotando-movimiento-colorido-generado-ia_188544-19725.jpg" width="70%" height="15%">
+                </div>
+                
+				<form class="full-screen-form" action="/registro-musica" method="post">
+				<label for="id">Codigo:</label>
+				<input type="number" id="id" name="id" required>
+				<br>
+				<label for="titulo">Titulo:</label>
+				<input type="text" id="titulo" name="titulo" required>
+				<br>
+				<label for="autor">Autor:</label>
+				<input type="text" id="autor" name="autor" required>
+				<br>
+				<label for="album">Album:</label>
+				<input type="text" id="album" name="album" required>
+				<br>
+				<label for="genero">Genero:</label>
+				<input type="text" id="genero" name="genero" required>
+				<br>
+			</form>
+            <div>   
+                <input type="submit" value="Registrar">
+                <input type="submit" value="Actualizar">
+                <input type="submit" value="Eliminar">
+                <input type="submit" value="Guardar">
+                </div>
+				
+			</td>
+		</tr>
+		
+			
+	</table>
+
+
+	<!---->
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+        import { initializeApp } from "firebase/app";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyBRggj1lV_yQH5ZzkfW0jOU4kbVbe_6KEM",
+        authDomain: "septimo-utc-daad5.firebaseapp.com",
+        databaseURL: "https://septimo-utc-daad5-default-rtdb.firebaseio.com",
+        projectId: "septimo-utc-daad5",
+        storageBucket: "septimo-utc-daad5.appspot.com",
+        messagingSenderId: "191290662072",
+        appId: "1:191290662072:web:d015dadb4333b34d2ba84d"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+		const database = getDatabase(app);
+
+		window.crearRegistro = function () {
+			const id = document.getElementById("id").value;
+			const titulo = document.getElementById("titulo").value;
+            const autor = document.getElementById("autor").value;
+            const album = document.getElementById("album").value;
+            const genero = document.getElementById("genero").value;
+			console.log(id, titulo, autor, album, genero);
+			
+			
+
+		}
+	  </script>
+</body>
+</html>
