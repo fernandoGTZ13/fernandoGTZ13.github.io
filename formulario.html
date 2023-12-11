@@ -67,40 +67,52 @@
 			
 	</table>
 
-
 	<!---->
-	<script type="module">
-		// Import the functions you need from the SDKs you need
-        import { initializeApp } from "firebase/app";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-        apiKey: "AIzaSyBRggj1lV_yQH5ZzkfW0jOU4kbVbe_6KEM",
-        authDomain: "septimo-utc-daad5.firebaseapp.com",
-        databaseURL: "https://septimo-utc-daad5-default-rtdb.firebaseio.com",
-        projectId: "septimo-utc-daad5",
-        storageBucket: "septimo-utc-daad5.appspot.com",
-        messagingSenderId: "191290662072",
-        appId: "1:191290662072:web:d015dadb4333b34d2ba84d"
-        };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-		const database = getDatabase(app);
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+            import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
 
-		window.crearRegistro = function () {
-			const id = document.getElementById("id").value;
-			const titulo = document.getElementById("titulo").value;
-            const autor = document.getElementById("autor").value;
-            const album = document.getElementById("album").value;
-            const genero = document.getElementById("genero").value;
-			console.log(id, titulo, autor, album, genero);
-			
-			
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+            apiKey: "AIzaSyCxe-QkAhrg54F6R4Nf86_tK1647XuRdpE",
+            authDomain: "creacion-web-65177.firebaseapp.com",
+            databaseURL: "https://creacion-web-65177-default-rtdb.firebaseio.com",
+            projectId: "creacion-web-65177",
+            storageBucket: "creacion-web-65177.appspot.com",
+            messagingSenderId: "1045244892155",
+            appId: "1:1045244892155:web:a153ad150cde8ae6c9f15e"
+            };
 
-		}
-	  </script>
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
+
+            window.crearRegistro = function () {
+                const id = document.getElementById("id").value;
+                const titulo = document.getElementById("titulo").value;
+                const autor = document.getElementById("autor").value;
+                const album = document.getElementById("album").value;
+                const genero = document.getElementById("genero").value;
+                console.log(id, titulo, autor, album, genero);
+                
+                push(
+                    ref(database, 'gutierrez_fernando'),
+                    {
+                        id: id,
+                        title: titulo,
+                        author: autor,
+                        album: album,
+                        gender: album
+                    }
+                );
+   
+
+            }
+        </script>
 </body>
 </html>
