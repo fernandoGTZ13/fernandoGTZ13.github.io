@@ -20,6 +20,14 @@
       border-radius: 5px;
       cursor: pointer;
     }
+	.btn-secondary {
+      background-color: #b462eb;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
     .btn-danger,
     .btn-warning {
@@ -44,7 +52,7 @@
       <h1><i>FORMULARIO MUSICA</i></h1>
 
       <img src="https://img.freepik.com/foto-gratis/guitarra-acuarela-abstracta-explotando-movimiento-colorido-generado-ia_188544-19725.jpg" width="70%" height="5%">
-
+      <!--Formulario-->
       <form id="miFormulario" onsubmit="return validarFormulario();">
         <label for="codigo"><b>Codigo:</b></label>
         <br>
@@ -73,7 +81,15 @@
 		<br>
         <button type="submit" class="btn btn-primary" onclick="crearRegistro()">REGISTRAR</button>
         <br>
-
+		<!-- Campo para el código de búsqueda -->
+        <label for="codigoBusqueda"><b>Código de Búsqueda:</b></label>
+        <br>
+        <input type="number" id="codigoBusqueda">
+        <br>
+        <!-- Botón de búsqueda -->
+        <button type="button" class="btn btn-secondary" onclick="buscarPorCodigo()">BUSCAR CODIGO</button>
+        <br>
+		<br>
       </form>
 
       <script type="module">
@@ -201,6 +217,41 @@
               console.error('Error al actualizar datos:', error);
             });
         }
+
+		window.buscarPorCodigo = function () {
+		const codigoBusqueda = document.getElementById("codigoBusqueda").value;
+		const filas = document.querySelectorAll("#tablaBody tr");
+		let codigoEncontrado = false;
+
+		filas.forEach((fila) => {
+			const codigo = fila.querySelector("[data-field='Codigo']").textContent;
+
+			if (codigo === codigoBusqueda) {
+			// Mostrar la fila correspondiente al código de búsqueda
+			fila.style.display = "table-row";
+			codigoEncontrado = true;
+			} else {
+			// Ocultar las filas que no coinciden con el código de búsqueda
+			fila.style.display = "none";
+			}
+		});
+
+		// Mostrar mensaje si no se encontró el código
+		if (!codigoEncontrado) {
+			alert("No se encontraron resultados para el código proporcionado.");
+		}
+
+		// Agregar un botón para regresar a la página principal
+		const botonRegresar = document.createElement("button");
+		botonRegresar.textContent = "Regresar a la Página Principal";
+		botonRegresar.classList.add("btn", "btn-secondary");
+		botonRegresar.addEventListener("click", function () {
+			// Recargar la página principal
+			location.reload();
+		});
+
+		document.body.appendChild(botonRegresar);
+		};
       </script>
 
     </td>
