@@ -1,117 +1,208 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="css/estilos.css">
-	<title>Formulario</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/estilos.css">
+  <title>Formulario</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 0;
+      background-image: url('https://previews.123rf.com/images/incomible/incomible1810/incomible181000256/121747519-impresi%C3%B3n-de-m%C3%BAsica-rock-and-roll-cartel-del-festival-de-rock-fondo-vintage-con-elementos.jpg');
+    }
+  </style>
 </head>
 
-<style>
-    body{
-        margin: 0;
-        padding: 0;
-        height: 0;
-        background-image: url('https://previews.123rf.com/images/incomible/incomible1810/incomible181000256/121747519-impresi%C3%B3n-de-m%C3%BAsica-rock-and-roll-cartel-del-festival-de-rock-fondo-vintage-con-elementos.jpg');
-
-
-    }
-    .full-screen-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 50vh;
-        margin: 0;
-    }
-    
-
-</style>
 <body class="fondo">
-	<table width="40%"  align="center" bgcolor="#58779A">
-		
-			<td align="center">
-                
-				<h2>Formulario de Registro de Musica</h2>
-                <div>
-                    <img src="https://img.freepik.com/foto-gratis/guitarra-acuarela-abstracta-explotando-movimiento-colorido-generado-ia_188544-19725.jpg" width="70%" height="15%">
-                </div>
-                
-				<form class="full-screen-form" action="/registro-musica" method="post">
-				<label for="id">Codigo:</label>
-				<input type="number" id="id" name="id" required>
-				<br>
-				<label for="titulo">Titulo:</label>
-				<input type="text" id="titulo" name="titulo" required>
-				<br>
-				<label for="autor">Autor:</label>
-				<input type="text" id="autor" name="autor" required>
-				<br>
-				<label for="album">Album:</label>
-				<input type="text" id="album" name="album" required>
-				<br>
-				<label for="genero">Genero:</label>
-				<input type="text" id="genero" name="genero" required>
-				<br>
-                <input type="submit" value="Registrar">
-                <input type="submit" value="Actualizar">
-                <input type="submit" value="Eliminar">
-                <input type="submit" value="Guardar">
-			</form>
-     
-				
-			</td>
-		</tr>
-		
-			
-	</table>
-
-	<!---->
+  <table width="40%" align="center" bgcolor="#58779A">
 
 
-        <script type="module">
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-            import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
+    <td align="center">
 
-            // Your web app's Firebase configuration
-            const firebaseConfig = {
-            apiKey: "AIzaSyCxe-QkAhrg54F6R4Nf86_tK1647XuRdpE",
-            authDomain: "creacion-web-65177.firebaseapp.com",
-            databaseURL: "https://creacion-web-65177-default-rtdb.firebaseio.com",
-            projectId: "creacion-web-65177",
-            storageBucket: "creacion-web-65177.appspot.com",
-            messagingSenderId: "1045244892155",
-            appId: "1:1045244892155:web:a153ad150cde8ae6c9f15e"
-            };
+      <h1>FORMULARIO MUSICA</h1>
 
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const database = getDatabase(app);
+      <img src="https://img.freepik.com/foto-gratis/guitarra-acuarela-abstracta-explotando-movimiento-colorido-generado-ia_188544-19725.jpg" width="65%" height="8%">
 
-            window.crearRegistro = function () {
-                const id = document.getElementById("id").value;
-                const titulo = document.getElementById("titulo").value;
-                const autor = document.getElementById("autor").value;
-                const album = document.getElementById("album").value;
-                const genero = document.getElementById("genero").value;
-                console.log(id, titulo, autor, album, genero);
-                
-                push(
-                    ref(database, 'gutierrez_fernando'),
-                    {
-                        id: id,
-                        title: titulo,
-                        author: autor,
-                        album: album,
-                        gender: album
-                    }
-                );
-   
+      <form id="miFormulario" onsubmit="return validarFormulario();">
+        <label for="codigo"><b>Codigo:</b></label>
+        <br>
+        <input type="number" id="codigo" required>
+        <br>
 
+        <label for="titulo"><b>Título:</b></label>
+        <br>
+        <input type="text" id="titulo" required>
+        <br>
+
+        <label for="autor"><b>Autor:</b></label>
+        <br>
+        <input type="text" id="autor" required>
+        <br>
+
+        <label for="album"><b>Álbum:</b></label>
+        <br>
+        <input type="text" id="album" required>
+        <br>
+
+        <label for="genero"><b>Género:</b></label>
+        <br>
+        <input type="text" id="genero" required>
+        <br>
+        <button type="submit" class="btn btn-primary" onclick="crearRegistro()">REGISTRAR</button>
+
+        <br>
+
+      </form>
+
+      <h2>Listado de Canciones</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Album</th>
+            <th>Genero</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaBody"></tbody>
+      </table>
+
+
+      <script type="module">
+        // Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+		import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+		// TODO: Add SDKs for Firebase products that you want to use
+		// https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCxe-QkAhrg54F6R4Nf86_tK1647XuRdpE",
+          authDomain: "creacion-web-65177.firebaseapp.com",
+          databaseURL: "https://creacion-web-65177-default-rtdb.firebaseio.com",
+          projectId: "creacion-web-65177",
+          storageBucket: "creacion-web-65177.appspot.com",
+          messagingSenderId: "1045244892155",
+          appId: "1:1045244892155:web:a153ad150cde8ae6c9f15e"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        function validarFormulario() {
+          const codigo = document.getElementById("codigo").value;
+          const titulo = document.getElementById("titulo").value;
+          const autor = document.getElementById("autor").value;
+          const album = document.getElementById("album").value;
+          const genero = document.getElementById("genero").value;
+
+          if (codigo.trim() === "" || titulo.trim() === "" || autor.trim() === "" || album.trim() === "" || genero.trim() === "") {
+            alert("Todos los campos son obligatorios.");
+            return false;
+          }
+
+          return true;
+        }
+
+        window.crearRegistro = function () {
+          if (validarFormulario()) {
+            const codigo = document.getElementById("codigo").value;
+            const titulo = document.getElementById("titulo").value;
+            const autor = document.getElementById("autor").value;
+            const album = document.getElementById("album").value;
+            const genero = document.getElementById("genero").value;
+            console.log(codigo, titulo, autor, album, genero);
+
+            push(
+              ref(database, 'gutierrez_fernando'), {
+                Codigo: codigo,
+                Titulo: titulo,
+                Autor: autor,
+                Album: album,
+                Genero: genero
+
+              }
+            );
+            document.getElementById("miFormulario").reset();
+          }
+        }
+
+        const tablaBody = document.getElementById("tablaBody");
+        const platosRef = ref(database, 'gutierrez_fernando');
+
+        function generarFila(key, plato) {
+          return `<tr id="fila-${key}">
+                    <td contenteditable="true" data-field="Codigo">${plato.Codigo}</td>
+                    <td contenteditable="true" data-field="Titulo">${plato.Titulo}</td>
+                    <td contenteditable="true" data-field="Autor">${plato.Autor}</td>
+                    <td contenteditable="true" data-field="Album">${plato.Album}</td>
+                    <td contenteditable="true" data-field="Genero">${plato.Genero}</td>
+                    <td>
+                    <button class="btn btn-danger" data-key="${key}" data-action="eliminar">Eliminar</button>
+                    <br>
+                    <button class="btn btn-warning" data-key="${key}" data-action="modificar">guardarCambios</button>
+                    </td>
+                </tr>`;
+        }
+
+        function actualizarTabla(platos) {
+          tablaBody.innerHTML = "";
+          for (const key in platos) {
+            if (platos.hasOwnProperty(key)) {
+              const plato = platos[key];
+              const fila = generarFila(key, plato);
+              tablaBody.innerHTML += fila;
             }
-        </script>
-</body>
-</html>
+          }
+
+          document.querySelectorAll('.btn-danger').forEach(btn => {
+            btn.addEventListener('click', eliminarRegistro);
+          });
+
+          document.querySelectorAll('.btn-warning').forEach(btn => {
+            btn.addEventListener('click', guardarCambios);
+          });
+        }
+
+        onValue(platosRef, (snapshot) => {
+          const platos = snapshot.val();
+          actualizarTabla(platos);
+        });
+
+        function eliminarRegistro(event) {
+          const key = event.target.getAttribute('data-key');
+          remove(ref(database, `gutierrez_fernando/${key}`));
+        }
+
+        function guardarCambios(event) {
+          const key = event.target.getAttribute('data-key');
+          const fila = document.getElementById(`fila-${key}`);
+          const campos = ['Codigo', 'Titulo', 'Autor', 'Album', 'Genero'];
+
+          const datosActualizados = campos.reduce((acc, campo) => {
+            acc[campo] = fila.querySelector(`[data-field="${campo}"]`).textContent;
+            return acc;
+          }, {});
+
+          update(ref(database, `gutierrez_fernando/${key}`), datosActualizados)
+            .then(() => {
+              console.log('Datos actualizados correctamente.');
+            })
+            .catch((error) => {
+              console.error('Error al actualizar datos:', error);
+            });
+        }
+      </script>
+
+    </td>
+
+  </body>
+
+  </html>
