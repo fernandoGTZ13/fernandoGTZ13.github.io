@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/estilos.css">
-  <title>Formulario</title>
-
+  <title>Formulario Musica</title>
   <style>
     body {
       margin: 0;
@@ -14,18 +11,39 @@
       height: 0;
       background-image: url('https://previews.123rf.com/images/incomible/incomible1810/incomible181000256/121747519-impresi%C3%B3n-de-m%C3%BAsica-rock-and-roll-cartel-del-festival-de-rock-fondo-vintage-con-elementos.jpg');
     }
+
+    .btn-primary {
+      background-color: #091b57;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-danger,
+    .btn-warning {
+      background-color: #f44336;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .btn-warning {
+      background-color: #21b4ad;
+    }
   </style>
 </head>
 
 <body class="fondo">
-  <table width="40%" align="center" bgcolor="#58779A">
-
-
+  <table width="45%" align="center" bgcolor="#58779A">
     <td align="center">
+      <h1><i>FORMULARIO MUSICA</i></h1>
 
-      <h1>FORMULARIO MUSICA</h1>
-
-      <img src="https://img.freepik.com/foto-gratis/guitarra-acuarela-abstracta-explotando-movimiento-colorido-generado-ia_188544-19725.jpg" width="65%" height="8%">
+      <img src="https://img.freepik.com/foto-gratis/guitarra-acuarela-abstracta-explotando-movimiento-colorido-generado-ia_188544-19725.jpg" width="70%" height="5%">
 
       <form id="miFormulario" onsubmit="return validarFormulario();">
         <label for="codigo"><b>Codigo:</b></label>
@@ -52,30 +70,14 @@
         <br>
         <input type="text" id="genero" required>
         <br>
+		<br>
         <button type="submit" class="btn btn-primary" onclick="crearRegistro()">REGISTRAR</button>
-
         <br>
 
       </form>
 
-      <h2>Listado de Canciones</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Codigo</th>
-            <th>Titulo</th>
-            <th>Autor</th>
-            <th>Album</th>
-            <th>Genero</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="tablaBody"></tbody>
-      </table>
-
-
       <script type="module">
-        // Import the functions you need from the SDKs you need
+        /// Import the functions you need from the SDKs you need
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 		import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 		// TODO: Add SDKs for Firebase products that you want to use
@@ -145,9 +147,9 @@
                     <td contenteditable="true" data-field="Album">${plato.Album}</td>
                     <td contenteditable="true" data-field="Genero">${plato.Genero}</td>
                     <td>
-                    <button class="btn btn-danger" data-key="${key}" data-action="eliminar">Eliminar</button>
+                    <button class="btn btn-danger" data-key="${key}" data-action="eliminar">Eliminar Campo</button>
                     <br>
-                    <button class="btn btn-warning" data-key="${key}" data-action="modificar">guardarCambios</button>
+                    <button class="btn btn-warning" data-key="${key}" data-action="modificar">Guardar Cambios</button>
                     </td>
                 </tr>`;
         }
@@ -203,6 +205,23 @@
 
     </td>
 
+	<h2>Listado de Canciones</h2>
+      <table border="2" width="45%" align="center" bgcolor="#A4EEDA">
+        <thead>
+          <tr>
+            <th><b>Codigo</b></th>
+            <th><b>Titulo</b></th>
+            <th><b>Autor</b></th>
+            <th><b>Album</b></th>
+            <th><b>Genero</b></th>
+            <th><b>Acciones</b></th>
+          </tr>
+        </thead>
+        <tbody id="tablaBody"></tbody>
+      </table>
+	  <br>
+	  <br>
+
   </body>
 
-  </html>
+</html>
